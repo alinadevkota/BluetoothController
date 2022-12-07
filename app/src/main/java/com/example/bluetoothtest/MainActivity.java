@@ -12,6 +12,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.widget.ArrayAdapter;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -26,6 +27,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        TextView text_device = (TextView) this.findViewById(R.id.device_name_id);
         BA = BluetoothAdapter.getDefaultAdapter();
         if (BA == null) {
             Toast.makeText(getApplicationContext(), "Bluetooth not supported", Toast.LENGTH_LONG).show();
@@ -38,13 +41,14 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(getApplicationContext(), "Already on", Toast.LENGTH_LONG).show();
         }
         Set<BluetoothDevice> pairedDevices = BA.getBondedDevices();
-
+//
         if (pairedDevices.size() > 0) {
             // There are paired devices. Get the name and address of each paired device.
             for (BluetoothDevice device : pairedDevices) {
                 String deviceName = device.getName();
                 String deviceHardwareAddress = device.getAddress(); // MAC address
-                Toast.makeText(getApplicationContext(), "Already on", Toast.LENGTH_LONG).show();
+//                Toast.makeText(getApplicationContext(), deviceHardwareAddress, Toast.LENGTH_LONG).show();
+                text_device.setText(deviceName);
             }
         }
 
