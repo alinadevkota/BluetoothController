@@ -1,29 +1,31 @@
 package com.example.bluetoothtest;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
 
-import android.Manifest;
 import android.annotation.SuppressLint;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothSocket;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.os.ParcelUuid;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.util.ArrayList;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.util.Set;
 
 public class MainActivity extends AppCompatActivity {
     private BluetoothAdapter BA;
     private Set<BluetoothDevice> pairedDevices;
     private Button top, bottom, left, right, s1cw, s2cw, s3cw, s4cw, s1acw, s2acw, s3acw, s4acw;
+
+    private OutputStream outputStream;
+    private InputStream inStream;
 
     @SuppressLint("MissingPermission")
     @Override
@@ -61,7 +63,27 @@ public class MainActivity extends AppCompatActivity {
         if (pairedDevices.size() > 0) {
             // There are paired devices. Get the name and address of each paired device.
             for (BluetoothDevice device : pairedDevices) {
+                ParcelUuid[] uuids = device.getUuids();
                 String deviceName = device.getName();
+                BluetoothSocket socket = null;
+                try {
+                    socket = device.createRfcommSocketToServiceRecord(uuids[0].getUuid());
+                } catch (IOException e) {
+                    e.printStackTrace();
+                    Toast.makeText(getApplicationContext(), "Unable to create Socket", Toast.LENGTH_LONG).show();
+                }
+                try {
+                    socket.connect();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                    Toast.makeText(getApplicationContext(), "Unable to connect Socket", Toast.LENGTH_LONG).show();
+                }
+                try {
+                    outputStream = socket.getOutputStream();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                    Toast.makeText(getApplicationContext(), "Unable to create Outputstream to send bluetooth data", Toast.LENGTH_LONG).show();
+                }
                 String deviceHardwareAddress = device.getAddress(); // MAC address
 //                Toast.makeText(getApplicationContext(), deviceHardwareAddress, Toast.LENGTH_LONG).show();
                 text_device.setText(deviceName);
@@ -71,11 +93,18 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(getApplicationContext(), "No Paired Devices Found", Toast.LENGTH_LONG).show();
         }
 
+
         top.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 //                Instead of Toast below, send a code to bluetooth serial port
                 Toast.makeText(getApplicationContext(), "top 0000", Toast.LENGTH_LONG).show();
+                try {
+                    outputStream.write(1000);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                    Toast.makeText(getApplicationContext(), "Unable to send data", Toast.LENGTH_LONG).show();
+                }
             }
         });
         bottom.setOnClickListener(new View.OnClickListener() {
@@ -155,5 +184,8 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+    }
+    public void write(String s, OutputStream outputStream) throws IOException {
+        outputStream.write(s.getBytes());
     }
 }
