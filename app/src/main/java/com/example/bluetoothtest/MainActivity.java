@@ -98,12 +98,11 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 //                Instead of Toast below, send a code to bluetooth serial port
-                Toast.makeText(getApplicationContext(), "top 0000", Toast.LENGTH_LONG).show();
+//                Toast.makeText(getApplicationContext(), "top 0000", Toast.LENGTH_LONG).show();
                 try {
-                    outputStream.write(1000);
+                    write("0000", outputStream);
                 } catch (IOException e) {
-                    e.printStackTrace();
-                    Toast.makeText(getApplicationContext(), "Unable to send data", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), "Unable to send message", Toast.LENGTH_LONG).show();
                 }
             }
         });
@@ -111,42 +110,72 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 //                Instead of Toast below, send a code to bluetooth serial port
-                Toast.makeText(getApplicationContext(), "bottom 0001", Toast.LENGTH_LONG).show();
+//                Toast.makeText(getApplicationContext(), "bottom 0001", Toast.LENGTH_LONG).show();
+                try {
+                    write("0001", outputStream);
+                } catch (IOException e) {
+                    Toast.makeText(getApplicationContext(), "Unable to send message", Toast.LENGTH_LONG).show();
+                }
             }
         });
         left.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 //                Instead of Toast below, send a code to bluetooth serial port
-                Toast.makeText(getApplicationContext(), "left 0010", Toast.LENGTH_LONG).show();
+//                Toast.makeText(getApplicationContext(), "left 0010", Toast.LENGTH_LONG).show();
+                try {
+                    write("0010", outputStream);
+                } catch (IOException e) {
+                    Toast.makeText(getApplicationContext(), "Unable to send message", Toast.LENGTH_LONG).show();
+                }
             }
         });
         right.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 //                Instead of Toast below, send a code to bluetooth serial port
-                Toast.makeText(getApplicationContext(), "right 0011", Toast.LENGTH_LONG).show();
+//                Toast.makeText(getApplicationContext(), "right 0011", Toast.LENGTH_LONG).show();
+                try {
+                    write("0011", outputStream);
+                } catch (IOException e) {
+                    Toast.makeText(getApplicationContext(), "Unable to send message", Toast.LENGTH_LONG).show();
+                }
             }
         });
         s1cw.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 //                Instead of Toast below, send a code to bluetooth serial port
-                Toast.makeText(getApplicationContext(), "S1cw 0100", Toast.LENGTH_LONG).show();
+//                Toast.makeText(getApplicationContext(), "S1cw 0100", Toast.LENGTH_LONG).show();
+                try {
+                    write("0100", outputStream);
+                } catch (IOException e) {
+                    Toast.makeText(getApplicationContext(), "Unable to send message", Toast.LENGTH_LONG).show();
+                }
             }
         });
         s1acw.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 //                Instead of Toast below, send a code to bluetooth serial port
-                Toast.makeText(getApplicationContext(), "S1acw 0101", Toast.LENGTH_LONG).show();
+//                Toast.makeText(getApplicationContext(), "S1acw 0101", Toast.LENGTH_LONG).show();
+                try {
+                    write("0101", outputStream);
+                } catch (IOException e) {
+                    Toast.makeText(getApplicationContext(), "Unable to send message", Toast.LENGTH_LONG).show();
+                }
             }
         });
         s2cw.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 //                Instead of Toast below, send a code to bluetooth serial port
-                Toast.makeText(getApplicationContext(), "S2cw 0110", Toast.LENGTH_LONG).show();
+//                Toast.makeText(getApplicationContext(), "S2cw 0110", Toast.LENGTH_LONG).show();
+                try {
+                    write("0110", outputStream);
+                } catch (IOException e) {
+                    Toast.makeText(getApplicationContext(), "Unable to send message", Toast.LENGTH_LONG).show();
+                }
             }
         });
         s2acw.setOnClickListener(new View.OnClickListener() {
@@ -159,28 +188,48 @@ public class MainActivity extends AppCompatActivity {
         s3cw.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(getApplicationContext(), "S3cw 1000", Toast.LENGTH_LONG).show();
+//                Toast.makeText(getApplicationContext(), "S3cw 1000", Toast.LENGTH_LONG).show();
+                try {
+                    write("1000", outputStream);
+                } catch (IOException e) {
+                    Toast.makeText(getApplicationContext(), "Unable to send message", Toast.LENGTH_LONG).show();
+                }
             }
         });
         s3acw.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 //                Instead of Toast below, send a code to bluetooth serial port
-                Toast.makeText(getApplicationContext(), "S3acw 1001", Toast.LENGTH_LONG).show();
+//                Toast.makeText(getApplicationContext(), "S3acw 1001", Toast.LENGTH_LONG).show();
+                try {
+                    write("1001", outputStream);
+                } catch (IOException e) {
+                    Toast.makeText(getApplicationContext(), "Unable to send message", Toast.LENGTH_LONG).show();
+                }
             }
         });
         s4cw.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 //                Instead of Toast below, send a code to bluetooth serial port
-                Toast.makeText(getApplicationContext(), "S4cw 1010", Toast.LENGTH_LONG).show();
+//                Toast.makeText(getApplicationContext(), "S4cw 1010", Toast.LENGTH_LONG).show();
+                try {
+                    write("1010", outputStream);
+                } catch (IOException e) {
+                    Toast.makeText(getApplicationContext(), "Unable to send message", Toast.LENGTH_LONG).show();
+                }
             }
         });
         s4acw.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 //                Instead of Toast below, send a code to bluetooth serial port
-                Toast.makeText(getApplicationContext(), "S4acw 1011", Toast.LENGTH_LONG).show();
+//                Toast.makeText(getApplicationContext(), "S4acw 1011", Toast.LENGTH_LONG).show();
+                try {
+                    write("1011", outputStream);
+                } catch (IOException e) {
+                    Toast.makeText(getApplicationContext(), "Unable to send message", Toast.LENGTH_LONG).show();
+                }
             }
         });
 

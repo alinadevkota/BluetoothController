@@ -202,7 +202,7 @@
                     android:layout_marginLeft="5pt"
                     android:layout_marginRight="5pt"
                     android:gravity="center"
-                    android:text="S2"></TextView>
+                    android:text="S3"></TextView>
 
                 <LinearLayout
                     android:layout_width="40dp"
@@ -241,7 +241,7 @@
                     android:layout_marginLeft="5pt"
                     android:layout_marginRight="5pt"
                     android:gravity="center"
-                    android:text="S2"></TextView>
+                    android:text="S4"></TextView>
 
                 <LinearLayout
                     android:layout_width="40dp"
